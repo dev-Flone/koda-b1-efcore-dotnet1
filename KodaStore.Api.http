@@ -3,23 +3,23 @@
 GET {{url}}/weatherforecast/
 Accept: application/json
 
-###
+### GET ALL PRODUCTS
 GET {{url}}/api/v1/products
 Accept: application/json
 
-###
+### GET ALL CUSTOMERS
 GET {{url}}/api/v1/customers
 Accept: application/json
 
-###
+### GET PRODUCT DETAILS
 GET {{url}}/api/v1/products/PR001
 Accept: application/json
 
-###
-GET {{url}}/api/v1/customers/14
+### GET CUSTOMER DETAILS
+GET {{url}}/api/v1/customers/1
 Accept: application/json
 
-###
+### CREATE CUSTOMER
 POST {{url}}/api/v1/customers
 Accept: application/json
 Content-Type: application/json
@@ -30,7 +30,7 @@ Content-Type: application/json
     "phone": "08123456789",
     "address": "Solo"
 }
-###
+### CREATE ANOTHER CUSTOMER
 POST {{url}}/api/v1/customers
 Accept: application/json
 Content-Type: application/json
@@ -42,26 +42,26 @@ Content-Type: application/json
     "address": "Semarang"
 }
 
-###
+### CREATE PRODUCT
 POST {{url}}/api/v1/products
 Accept: application/json
 Content-Type: application/json
 
 {
-    "customerId": 14,
+    "customerId": 1,
     "productCode": "PR001",
     "name": "Keyboard",
     "price": 30000,
     "stock": 15,
     "category": "Elektronik"
 }
-###
+### CREATE ANOTHER PRODUCT
 POST {{url}}/api/v1/products
 Accept: application/json
 Content-Type: application/json
 
 {
-    "customerId": 15,
+    "customerId": 1,
     "productCode": "PR003",
     "name": "Monitor",
     "price": 1400000,
@@ -69,7 +69,7 @@ Content-Type: application/json
     "category": "Elektronik"
 }
 
-###
+### YET CREATE ANOTHER PRODUCT
 POST {{url}}/api/v1/products
 Accept: application/json
 Content-Type: application/json
@@ -83,7 +83,7 @@ Content-Type: application/json
     "category": "Elektronik"
 }
 
-###
+### AND YET AGAIN CREATE PRODUCT
 POST {{url}}/api/v1/products
 Accept: application/json
 Content-Type: application/json
@@ -109,16 +109,16 @@ Content-Type: image/jpeg
 --KodaStore--
 
 
-###
-DELETE {{url}}/api/v1/products/PR002
+### DELETE PRODUCT BY CODE
+DELETE {{url}}/api/v1/products/PR003
 Accept: application/json
 
-###
+### DELETE CUSTOMER BY ID
 DELETE {{url}}/api/v1/customers/1
 Accept: application/json
 
-###
-PUT {{url}}/api/v1/products/PR002
+### UPDATE PRODUCT
+PUT {{url}}/api/v1/products/PR001
 Accept: application/json
 Content-Type: application/json
 
@@ -130,7 +130,7 @@ Content-Type: application/json
     "category": "Aksesoris"
 }
 
-###
+### UPDATE CUSTOMER
 PUT {{url}}/api/v1/customers/2
 Accept: application/json
 Content-Type: application/json

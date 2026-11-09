@@ -42,7 +42,8 @@ builder.Services.AddCors(options =>
 });
 
 // Repository
-builder.Services.AddScoped<IProductRepository, SqlProductRepository>();
+builder.Services.AddScoped<IProductRepository, EfProductRepository>();
+// builder.Services.AddScoped<IProductRepository, SqlProductRepository>();
 builder.Services.AddScoped<ICustomerRepository, SqlCustomerRepository>();
 builder.Services.AddScoped<IProductImageStorage, LocalProductImageStorage>();
 
