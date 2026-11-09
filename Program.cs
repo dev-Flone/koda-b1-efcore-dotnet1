@@ -2,11 +2,20 @@ using KodaStore.Api.Data;
 using KodaStore.Api.Files;
 using KodaStore.Api.Middlewares;
 using KodaStore.Api.Repositories;
+using KodaStore.Api.Seeding;
 using KodaStore.Api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ecommercedb") ?? throw new InvalidOperationException("Connection string not yet configured.");
+
+// DbContext
+var connectionString = builder.Configuration.GetConnectionString("ecommercedb")
+        ?? throw new InvalidOperationException("ConnectionString : Not yet configured.");
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(connectionString).UseSeeding((context, _) => ProductSeedData.Seed(context)).UseAsyncSeeding((context, _, ct) => ProductSeedData.SeedAsync(context, ct));
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -15,6 +24,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+
 
 // Add services to the container.
 
@@ -61,6 +71,12 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.MapGet("/", () => Results.Redirect("/swagger"));
 }
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
 app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
@@ -68,6 +84,10 @@ app.UseHttpsRedirection();
 app.UseExceptionHandler();
 
 app.UseStaticFiles();
+
+app.UseRouting();
+
+app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",

@@ -51,3 +51,13 @@
 -- DELETE dbo.Product WHERE ProductId = 2
 -- SELECT * FROM dbo.Product WITH (NOLOCK);
 -- SELECT * FROM Customer WITH(NOLOCK);
+-- DROP TABLE [__EFMigrationsHistory];
+SELECT TABLE_NAME
+FROM   INFORMATION_SCHEMA.TABLES
+WHERE  TABLE_TYPE = 'BASE TABLE';
+
+SELECT *
+FROM   Product;
+
+SELECT *
+FROM   Customer;
