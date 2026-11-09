@@ -82,7 +82,7 @@ public class SqlCustomerRepository(IConfiguration configuration) : ICustomerRepo
 
         return customer is null
             ? null
-            : new Customer(customer.Id, customer.Name, customer.Email, customer.Phone, customer.Address, products);
+            : new Customer(customer.Id, customer.Name, customer.Email, customer.Phone, customer.Address);
     }
 
     public async Task<Customer?> TryAddAsync(Customer customer, CancellationToken cancellationToken)

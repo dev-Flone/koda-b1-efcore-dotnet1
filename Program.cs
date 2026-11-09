@@ -1,13 +1,20 @@
+using KodaStore.Api.Data;
 using KodaStore.Api.Files;
 using KodaStore.Api.Middlewares;
 using KodaStore.Api.Repositories;
 using KodaStore.Api.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("ecommercedb") ?? throw new InvalidOperationException("Connection string not yet configured.");
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
 
 // Add services to the container.
 

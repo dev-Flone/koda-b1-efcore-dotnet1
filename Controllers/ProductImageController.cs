@@ -1,4 +1,3 @@
-using System.Net.Mime;
 using KodaStore.Api.Files;
 using KodaStore.Api.Services;
 using Microsoft.AspNetCore.Mvc;

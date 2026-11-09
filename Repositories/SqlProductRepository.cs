@@ -38,7 +38,7 @@ public class SqlProductRepository(IConfiguration configuration) : IProductReposi
         const string sql = """
             SELECT CustomerId, ProductCode, Name, Price, Stock, Category
             FROM dbo.Product
-            WHERE ProductCode = @productCode
+            WHERE ProductCode = @productCode;
         """;
 
         await using var connection = new SqlConnection(_connetionString);
